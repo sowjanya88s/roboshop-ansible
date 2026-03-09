@@ -19,9 +19,9 @@
      tags:
       project: roboshop
       Environment: "{{ env }}"
-     loop: "{{ instances }}"
-     register: ec2_output
-     when: action == "create"
+    loop: "{{ instances }}"
+    register: ec2_output
+    when: action == "create"
      
   - name: print ec2_output
     ansible.builtin.debug:
