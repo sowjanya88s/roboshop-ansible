@@ -1,6 +1,6 @@
 - name: creating instances
   hosts: all
-  connection: all
+  connection: local
   vars:
     sg_id: sg-06ce163ff833036b8
     ami_id: ami-0220d79f3f480ecf5
