@@ -5,6 +5,7 @@
     sg_id: sg-06ce163ff833036b8
     ami_id: ami-0220d79f3f480ecf5
     env: dev
+    domain_name: sowjanya.fun
     action: create
     instances:
     - mongodb
@@ -27,3 +28,15 @@
     ansible.builtin.debug:
       msg: "{{ ec2_output }}"  
     when: action == "create"
+
+  - name: creating r53 records
+    amazon.aws.route53:
+      state: present
+      zone: "{{ domain_name }}"
+      record: "{{ item.item }}-{{ env }}.{{ domain_name }}"
+      type: A
+      ttl: 1 
+      value: "{{ item.instances[0].private_ip_address }}"
+      wait: false
+  loop: "{{ ec2_output.results }}" # list
+  when: action == "create"  
