@@ -38,5 +38,5 @@
       ttl: 1 
       value: "{{ item.instances[0].private_ip_address }}"
       wait: false
-  loop: "{{ ec2_output.results }}" # list
-  when: action == "create"  
+    loop: "{{ ec2_output.results }}" # list
+    when: action == "create"  
