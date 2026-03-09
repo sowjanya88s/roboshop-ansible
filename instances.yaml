@@ -7,8 +7,8 @@
     env: dev
     action: create
     instances:
-     - mongodb
-     - catalogue
+    - mongodb
+    - catalogue
   tasks:
   - name: creation of instances
     amazon.aws.ec2_instance:
