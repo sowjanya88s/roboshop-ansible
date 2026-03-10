@@ -50,17 +50,33 @@
       ttl: 1 
       value: "{{ item.instances[0].public_ip_address }}"
       wait: false
+      overwrite: true
     loop: "{{ ec2_output.results }}" # list
     when: 
     - action == "create" 
     - item.item == "frontend"
 
     - name: deleting r53 records
-    amazon.aws.route53:
-      state: absent
-      zone: "{{ domain_name }}"
-      record: "{{ item.item }}-{{ env }}.{{ domain_name }}"
-      type: A
-      ttl: 1 
-      wait: false # list
-    when: action == "delete"   
+      amazon.aws.route53:
+       state: absent
+       zone: "{{ domain_name }}"
+       record: "{{ item }}-{{ env }}.{{ domain_name }}"
+       type: A
+       ttl: 1 
+       wait: false # list
+      loop: "{{ instances }}"
+      when: action == "destroy"   
+
+    ### DESTROY ###
+    - name: delete r53 records for frontend
+      amazon.aws.route53:
+       state: absent
+       zone: "{{ domain_name }}"
+       record: "roboshop-{{ env }}.{{ domain_name }}" # roboshop-dev.daws88s.online
+       type: A
+       ttl: 1
+      loop: "{{ instances }}"
+      when:  # and
+      - item == "frontend"
+      - action == "destroy"
+
