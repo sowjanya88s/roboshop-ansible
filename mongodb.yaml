@@ -13,12 +13,12 @@
       state: present
   
   - name: replacing ip
-    ansible.builtin.lineinfile:
+    ansible.builtin.replace:
       path: /etc/mongod.conf
       regexp: '127.0.0.1'
       replace: '0.0.0.0'
   
-  - name: Restart service httpd, in all cases
+  - name: Restart service 
     ansible.builtin.service:
       name: mongod
       state: started
