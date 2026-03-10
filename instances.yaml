@@ -38,6 +38,7 @@
       ttl: 1 
       value: "{{ item.instances[0].private_ip_address }}"
       wait: false
+      overwrite: true
     loop: "{{ ec2_output.results }}" # list
     when: action == "create"
   
@@ -79,4 +80,15 @@
       when:  # and
       - item == "frontend"
       - action == "destroy"
+
+
+  - name: delete ec2 instance
+    amazon.aws.ec2_instance:
+      state: absent
+      name: "{{ item }}-{{ env }}"
+      wait: false
+    loop: "{{ instances }}"
+    when: action == "destroy"
+
+
 
