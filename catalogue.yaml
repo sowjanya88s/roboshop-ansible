@@ -1,5 +1,6 @@
 - name: configuring catalogue
   hosts: catalogue
+  become: yes
   tasks:
   - name: enabling nodejs:20
     ansible.builtin.command: dnf module enable nodejs:20 -y
