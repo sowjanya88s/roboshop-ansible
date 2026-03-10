@@ -16,3 +16,8 @@
       comment: roboshop system user
       home: /app
       system: true
+
+  - name: creating app directory
+    ansible.builtin.file:
+      path: /app
+      state: directory

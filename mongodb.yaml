@@ -16,10 +16,12 @@
     ansible.builtin.lineinfile:
       path: /etc/mongod.conf
       regexp: '127.0.0.1'
-      line: '0.0.0.0'
+      replace: '0.0.0.0'
   
   - name: Restart service httpd, in all cases
     ansible.builtin.service:
       name: mongod
       state: started
       enabled: yes
+
+  
