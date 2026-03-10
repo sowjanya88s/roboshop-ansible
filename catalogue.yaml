@@ -1,0 +1,3 @@
+- name: configuring catalogue
+  hosts: local
+  connection: all
