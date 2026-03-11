@@ -77,8 +77,7 @@
        type: A
        ttl: 1
       loop: "{{ instances }}"
-      when:  # and
-      - action == "destroy"
+      when:  action == "destroy"
 
 
   - name: delete ec2 instance
