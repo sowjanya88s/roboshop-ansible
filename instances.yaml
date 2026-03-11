@@ -78,7 +78,6 @@
        ttl: 1
       loop: "{{ instances }}"
       when:  # and
-      - item == "frontend"
       - action == "destroy"
 
 
