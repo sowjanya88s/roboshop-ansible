@@ -64,7 +64,6 @@
        record: "{{ item }}-{{ env }}.{{ domain_name }}"
        type: A
        ttl: 1 
-       wait: false # list
       loop: "{{ instances }}"
       when: action == "destroy"   
 
