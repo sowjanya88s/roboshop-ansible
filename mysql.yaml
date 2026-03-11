@@ -1,5 +1,5 @@
 - name: configuring mysql
-  hosts: user
+  hosts: mysql
   become: yes
   tasks:
   - name: installing mysql
