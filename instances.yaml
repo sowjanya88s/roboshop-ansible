@@ -73,7 +73,7 @@
       amazon.aws.route53:
        state: absent
        zone: "{{ domain_name }}"
-       record: "roboshop-{{ env }}.{{ domain_name }}" # roboshop-dev.daws88s.online
+       record: "{{ item }}-{{ env }}.{{ domain_name }}" # roboshop-dev.daws88s.online
        type: A
        ttl: 1
       loop: "{{ instances }}"
