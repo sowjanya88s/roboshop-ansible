@@ -29,9 +29,9 @@
       path: /app
       state: directory
 
-  - name: delete catalogue zip file
+  - name: delete payment zip file
     ansible.builtin.file:
-      path: /tmp/catalogue.zip
+      path: /tmp/payment.zip
       state: absent
 
 
