@@ -64,6 +64,15 @@
     ansible.builtin.systemd_service:
       daemon_reload: true
 
+  - name: install mysql dependancies
+    ansible.builtin.dnf:
+    name: {{ item }}
+    state: present
+    loop:
+    - pymysql
+    - cryptography
+
+
     
   - name: import shipping data
     community.mysql.mysql_db:
