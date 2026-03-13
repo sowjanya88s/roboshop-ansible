@@ -46,7 +46,7 @@
     amazon.aws.route53:
       state: present
       zone: "{{ domain_name }}"
-      record: "{{ item.item }}-{{ env }}.{{ domain_name }}"
+      record: "frontend-{{ env }}.{{ domain_name }}"
       type: A
       ttl: 1 
       value: "{{ item.instances[0].public_ip_address }}"
@@ -79,6 +79,16 @@
     when: 
     - item == "frontend" 
     - action == "destroy"
+
+  - name: delete r53 records for frontend
+    amazon.aws.route53:
+       state: absent
+       zone: "{{ domain_name }}"
+       record: "{{ item }}-{{ env }}.{{ domain_name }}" # roboshop-dev.daws88s.online
+       type: A
+       ttl: 1
+    loop: "{{ instances }}"
+    when:  action == "destroy"
 
 
   - name: delete ec2 instance
