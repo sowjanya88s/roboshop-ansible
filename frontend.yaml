@@ -28,7 +28,7 @@
 
   - name: copy service file
     ansible.builtin.template:
-      src: /roboshop-ansible/nginx.conf
+      src: roboshop-ansible/nginx.conf
       dest: /etc/nginx/nginx.conf
 
   - name: restart nginx
