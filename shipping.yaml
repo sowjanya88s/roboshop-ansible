@@ -65,12 +65,11 @@
       daemon_reload: true
 
   - name: install mysql dependancies
-    ansible.builtin.dnf:
-    name: "{{ item }}"
-    state: present
-    executable: pip3.9
+    ansible.builtin.pip:
+     name: "{{ item }}"
+     executable: pip3.9
     loop:
-    - pymysql
+    - PyMySQL
     - cryptography
 
 
