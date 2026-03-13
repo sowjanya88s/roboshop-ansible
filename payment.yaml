@@ -48,11 +48,14 @@
   
   - name: installing dependancies
     ansible.builtin.pip:
-     requirements: /app/requirements.txt
+     requirements: requirements.txt
+     executable: pip3.9
+    args:
+     chdir: /app
 
   - name: copying service file
     ansible.builtin.template:
-      src: /roboshop-ansible/payment.service
+      src: payment.service
       dest: /etc/systemd/system/payment.service
 
   - name: Just force systemd to reread configs 
