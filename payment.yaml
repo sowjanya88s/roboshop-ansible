@@ -47,7 +47,7 @@
   
   - name: installing dependancies
     ansible.builtin.pip:
-    requirements: /app/requirements.txt
+     requirements: /app/requirements.txt
 
   - name: copying service file
     ansible.builtin.template:
